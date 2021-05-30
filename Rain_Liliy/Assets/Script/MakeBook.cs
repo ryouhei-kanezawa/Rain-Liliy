@@ -2,6 +2,13 @@ using UnityEngine;
 
 public class MakeBook : MonoBehaviour
 {
+    /*
+    [SerializeField]
+    private float SpawnX;
+    [SerializeField]
+    private float SpawnY;
+    */
+
     [SerializeField]
     private GameObject[] Peas;
 
@@ -27,7 +34,12 @@ public class MakeBook : MonoBehaviour
 		{
             int r = Random.Range(0, 5);
             var ball = Instantiate(Peas[r]);
-            ball.transform.position = new Vector2(Random.Range(-2f, 2f), Random.Range(4.0f, 4.5f));
+            ball.transform.position = new Vector2(Random.Range(-32f, 32f), 40f);
         }
 	}
+
+    void ReSpawnPeas()
+    {
+
+    }
 }

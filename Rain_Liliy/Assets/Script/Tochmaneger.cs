@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +5,19 @@ public class Tochmaneger : MonoBehaviour
 {
     [SerializeField]
     private MakeBook _book;
+    [SerializeField]
+    private AddScore _Add;
+
     private List<GameObject> Books = new List<GameObject>();
     private GameObject lastBook;
 
     void Update()
     {
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
 		if (Input.GetMouseButtonDown(0))
 		{
             //Debug.Log("ç≈èâ");
@@ -90,6 +97,8 @@ public class Tochmaneger : MonoBehaviour
                 Debug.Log("çÌèúíÜ");
                 Destroy(item);
 			}
+
+            _Add.ScoreAdd(Books.Count);
             _book.NewPeas(Books.Count);
 		}
 		else
