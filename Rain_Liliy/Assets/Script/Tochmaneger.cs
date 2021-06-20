@@ -4,21 +4,32 @@ using UnityEngine;
 public class Tochmaneger : MonoBehaviour
 {
     [SerializeField]
-    private MakeBook _book;
-    [SerializeField]
     private AddScore _Add;
+    [SerializeField]
+    private TimelineStop _stop;
 
+    private Camera camera;
     private List<GameObject> Books = new List<GameObject>();
     private GameObject lastBook;
 
-    void Update()
+	private void Start()
+	{
+        camera = Camera.main;
+	}
+
+	void Update()
     {
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
         }
 
-		if (Input.GetMouseButtonDown(0))
+        if (_stop.StopMorment())
+        {
+            return;
+        }
+
+        if (Input.GetMouseButtonDown(0))
 		{
             //Debug.Log("最初");
             FirstBook();
@@ -40,7 +51,7 @@ public class Tochmaneger : MonoBehaviour
     void FirstBook()
     {
         GameObject _child;
-        RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.5f);
+        RaycastHit2D hit2D = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.5f);
         if (hit2D.collider != null)
         {
             if(hit2D.collider.gameObject.CompareTag("紫ピース")|| hit2D.collider.gameObject.CompareTag("緑ピース")
@@ -61,7 +72,7 @@ public class Tochmaneger : MonoBehaviour
     void Dragging()
 	{
         GameObject _child;
-        RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.5f);
+        RaycastHit2D hit2D = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.5f);
         Debug.Log("移動中");
         if (hit2D.collider != null)
         {
@@ -99,7 +110,6 @@ public class Tochmaneger : MonoBehaviour
 			}
 
             _Add.ScoreAdd(Books.Count);
-            _book.NewPeas(Books.Count);
 		}
 		else
 		{

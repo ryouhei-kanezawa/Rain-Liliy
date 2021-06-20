@@ -16,13 +16,6 @@ public class PaseUI : MonoBehaviour
         Pause.onClick.AddListener(PauseSW);
     }
 
-    /*
-    void Update()
-    {
-        PauseUI();
-    }
-    */
-
     void PauseSW()
     {
         if (sw)
@@ -38,14 +31,4 @@ public class PaseUI : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
-
-    /*
-    void PauseUI()
-    {
-        if (sw)
-        {
-            
-        }
-    }
-    */
 }

@@ -15,7 +15,7 @@ public class AddScore : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(score);
+        //Debug.Log(score);
     }
 
     public void ScoreAdd(int count)
@@ -25,7 +25,7 @@ public class AddScore : MonoBehaviour
 
         for (int i = 0; i < _fixed; i++)
         {
-            fixed_mag *= mag;
+            fixed_mag += mag;
         }
 
         scoreSlider.value += add * fixed_mag;
