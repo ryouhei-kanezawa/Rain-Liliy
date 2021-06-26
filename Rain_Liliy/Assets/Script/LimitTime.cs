@@ -10,6 +10,8 @@ public class LimitTime : MonoBehaviour
     [SerializeField]
     private float limit = 30.0f;
     [SerializeField]
+    private ResultScript _result;
+    [SerializeField]
     private TimelineStop _stop;
 
     private float rotateValue = 0;
@@ -31,7 +33,7 @@ public class LimitTime : MonoBehaviour
             return;
         }
 
-        if (_stop.StopMorment())
+        if (_stop.StopMorment()||_result.SendStop())
         {
             return;
         }
@@ -41,5 +43,6 @@ public class LimitTime : MonoBehaviour
         //Debug.Log(rotateValue + "“x‰ñ‚Á‚½");
 
         _transform.localEulerAngles = new Vector3(0f, 0f, rotateValue);
+        _result.GetTime(rotateValue);
     }
 }

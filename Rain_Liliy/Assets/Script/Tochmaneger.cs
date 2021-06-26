@@ -7,6 +7,8 @@ public class Tochmaneger : MonoBehaviour
     private AddScore _Add;
     [SerializeField]
     private TimelineStop _stop;
+    [SerializeField]
+    private ResultScript _result;
 
     private Camera camera;
     private List<GameObject> Books = new List<GameObject>();
@@ -24,7 +26,7 @@ public class Tochmaneger : MonoBehaviour
             return;
         }
 
-        if (_stop.StopMorment())
+        if (_stop.StopMorment()||_result.SendStop())
         {
             return;
         }
@@ -46,6 +48,8 @@ public class Tochmaneger : MonoBehaviour
             //Debug.Log("è¡ãé");
             DeleteBooks();
 		}
+
+        
     }
 
     void FirstBook()
@@ -97,6 +101,7 @@ public class Tochmaneger : MonoBehaviour
                 
             }
         }
+        else{ }
     }
 
     void DeleteBooks()

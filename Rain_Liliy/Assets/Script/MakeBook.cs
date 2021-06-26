@@ -32,13 +32,20 @@ public class MakeBook : MonoBehaviour
         SpawnPeas();
     }
 
-    private void Update()
+    void Update()
     {
         NewPeas();
+
+        if (Input.GetMouseButtonDown(1)&&!Input.GetMouseButton(0))
+        {
+            ReSpawnPeas();
+        }
     }
 
     void SpawnPeas()
     {
+        even = 0;
+        odd = 0;
         for (int i = 0; i < 7; i++)
         {
 			if (i % 2 == 0)
@@ -66,26 +73,34 @@ public class MakeBook : MonoBehaviour
         }
     }
 
-    private async void NewPeas()
-	{
+    private void NewPeas()
+    {
         for (int i = 0; i < books.Length; i++)
         {
             for (int j = 0; j < books[i].Length; j++)
             {
                 if (books[i][j] == null)
                 {
-                    Debug.Log(i + " " + j);
+                    //Debug.Log(i + " " + j);
                     int r = Random.Range(0, 5);
                     books[i][j] =
-                        Instantiate(Peas[r], new Vector3(-34f + (i * 11), 34f, 140f), Quaternion.identity);
+                        Instantiate(Peas[r], new Vector3(-34f + (i * 11), 34f + (j * 5), 140f), Quaternion.identity);
                 }
             }
         }
-	}
+    }
 
-    void ReSpawnPeas()
+    public void ReSpawnPeas()
     {
+        for (int i = 0; i < books.Length; i++)
+        {
+            for (int j = 0; j < books[i].Length; j++)
+            {
+                Destroy(books[i][j]);
+            }
+        }
 
+        SpawnPeas();
     }
 }
 

@@ -10,7 +10,7 @@ public class AddScore : MonoBehaviour
     [SerializeField]
     private float mag = 1.5f;
 
-    private float score;
+    private float score = 0;
     private float maxScore;
 
     private void Update()
@@ -21,7 +21,7 @@ public class AddScore : MonoBehaviour
     public void ScoreAdd(int count)
     {
         int _fixed =  count - 3;
-        var fixed_mag = 1f;
+        var fixed_mag = 0f;
 
         for (int i = 0; i < _fixed; i++)
         {
@@ -30,6 +30,12 @@ public class AddScore : MonoBehaviour
 
         scoreSlider.value += add * fixed_mag;
         score =(int)(score + add * fixed_mag);
+        maxScore = score;
+    }
+
+    public int GetScore()
+    {
+        return (int)maxScore;
     }
         
 }
