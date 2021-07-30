@@ -4,13 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - piece
   - "\u7D2B\u30D4\u30FC\u30B9"
   - "\u7DD1\u30D4\u30FC\u30B9"
   - "\u8D64\u30D4\u30FC\u30B9"
   - "\u9752\u30D4\u30FC\u30B9"
   - "\u9EC4\u30D4\u30FC\u30B9"
   - "\u30DC\u30E0"
+  - Frame
   layers:
   - Default
   - TransparentFX
@@ -18,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - frame
   - 
   - 
   - 

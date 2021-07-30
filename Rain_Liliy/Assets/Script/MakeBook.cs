@@ -11,9 +11,14 @@ public class MakeBook : MonoBehaviour
 
     [SerializeField]
     private GameObject[] Peas;
+    [SerializeField]
+    private GameObject Bomb;
 
     private int even = 0;
     private int odd = 0;
+    private bool sw;
+    private bool bsw = false;
+    private int suitable = 0;
     private GameObject[][] books = new GameObject[7][];
     void Start()
     {
@@ -75,17 +80,28 @@ public class MakeBook : MonoBehaviour
 
     private void NewPeas()
     {
+        sw = true;
+        suitable = 0;
         for (int i = 0; i < books.Length; i++)
         {
             for (int j = 0; j < books[i].Length; j++)
             {
                 if (books[i][j] == null)
                 {
+                    suitable++;
                     //Debug.Log(i + " " + j);
-                    int r = Random.Range(0, 5);
-                    books[i][j] =
-                        Instantiate(Peas[r], new Vector3(-34f + (i * 11), 34f + (j * 5), 140f), Quaternion.identity);
-                }
+                    if (suitable >= 6 && sw &&!bsw)
+                    {
+                        books[i][j] =
+                              Instantiate(Bomb, new Vector3(-34f + (i * 11), 34f + (j * 5), 140f), Quaternion.identity);
+                        sw = false;
+                    }
+                    else
+                    {
+                        int r = Random.Range(0, 5);
+                        books[i][j] =
+                            Instantiate(Peas[r], new Vector3(-34f + (i * 11), 34f + (j * 5), 140f), Quaternion.identity);
+                    }                }
             }
         }
     }
@@ -101,6 +117,18 @@ public class MakeBook : MonoBehaviour
         }
 
         SpawnPeas();
+    }
+
+    public void BombEx()
+    {
+        bsw = true;
+        //Debug.Log("y");
+    }
+
+    public void BombRes()
+    {
+        bsw = false;
+        //Debug.Log("x");
     }
 }
 

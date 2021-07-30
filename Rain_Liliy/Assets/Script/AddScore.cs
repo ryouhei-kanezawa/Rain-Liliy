@@ -9,6 +9,8 @@ public class AddScore : MonoBehaviour
     private float add = 300f;
     [SerializeField]
     private float mag = 1.5f;
+    [SerializeField]
+    private float Bscore = 5000;
 
     private float score = 0;
     private float maxScore;
@@ -30,6 +32,13 @@ public class AddScore : MonoBehaviour
 
         scoreSlider.value += add * fixed_mag;
         score =(int)(score + add * fixed_mag);
+        maxScore = score;
+    }
+
+    public void BombAdd()
+    {
+        scoreSlider.value += Bscore;
+        score += Bscore;
         maxScore = score;
     }
 

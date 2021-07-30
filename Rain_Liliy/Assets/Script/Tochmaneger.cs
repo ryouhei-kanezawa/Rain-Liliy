@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using UnityEngine;
 
 public class Tochmaneger : MonoBehaviour
@@ -9,10 +10,14 @@ public class Tochmaneger : MonoBehaviour
     private TimelineStop _stop;
     [SerializeField]
     private ResultScript _result;
+    [SerializeField]
+    private MakeBook _book;
 
     private Camera camera;
     private List<GameObject> Books = new List<GameObject>();
+    private List<GameObject> TempList=new List<GameObject>();
     private GameObject lastBook;
+    private bool sw = false;
 
 	private void Start()
 	{
@@ -69,6 +74,15 @@ public class Tochmaneger : MonoBehaviour
                 bookColor.a = 0.5f;
                 _child.GetComponent<SpriteRenderer>().color = bookColor;
                 lastBook = thisBook;
+            }else if(hit2D.collider.gameObject.CompareTag("ボム"))
+            {
+                var thisBook = hit2D.collider.gameObject;
+                _child = thisBook.transform.GetChild(0).gameObject;
+                Books.Add(thisBook);
+                Color bookColor = _child.GetComponent<SpriteRenderer>().color;
+                bookColor.a = 0.7f;
+                _child.GetComponent<SpriteRenderer>().color = bookColor;
+                lastBook = thisBook;
             }
         }
     }
@@ -77,20 +91,19 @@ public class Tochmaneger : MonoBehaviour
 	{
         GameObject _child;
         RaycastHit2D hit2D = Physics2D.Raycast(camera.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, 0.5f);
-        Debug.Log("移動中");
+        
+        
+        //Debug.Log("移動中");
         if (hit2D.collider != null)
         {
-            Debug.Log("1");
-            if (hit2D.collider.gameObject.tag==lastBook.tag)
+            if (hit2D.collider.gameObject.tag==lastBook.tag&& lastBook.tag != "ボム")
             {
-                Debug.Log("2");
                 var thisBook = hit2D.collider.gameObject;
 
                 Vector2 distance = thisBook.transform.position - lastBook.transform.position;
 
 				if (!Books.Contains(thisBook) && distance.magnitude <= 20.0f)
 				{
-                    Debug.Log("追加");
                     _child = thisBook.transform.GetChild(0).gameObject;
                     Books.Add(thisBook);
                     Color bookColor = _child.GetComponent<SpriteRenderer>().color;
@@ -98,27 +111,52 @@ public class Tochmaneger : MonoBehaviour
                     _child.GetComponent<SpriteRenderer>().color = bookColor;
                     lastBook = thisBook;
                 }
-                
+                _book.BombRes();
+            }
+            else if(lastBook.tag=="ボム")
+            {
+                var h = Physics2D.CircleCastAll(lastBook.transform.position, 10f,Vector2.zero);
+                Debug.Log(h.Length);
+                foreach (var hit in h)
+                {
+                    Debug.Log(hit.transform.position);
+                    if (!hit.collider.gameObject.CompareTag("ボム")
+                        &&!hit.collider.gameObject.CompareTag("Frame"))
+                    {
+                        if (hit != false)
+                        {
+                            var thisBook = hit.collider.gameObject;
+                            Books.Add(thisBook);
+                            _child = thisBook.transform.GetChild(0).gameObject;
+                            Color bookColor = _child.GetComponent<SpriteRenderer>().color;
+                            bookColor.a = 0.5f;
+                            _child.GetComponent<SpriteRenderer>().color = bookColor;
+                            lastBook = thisBook;
+                        }
+                    }
+                }
+                _book.BombEx();
             }
         }
-        else{ }
     }
 
     void DeleteBooks()
-	{
-		if (Books.Count >= 3)
+    {
+        if (Books.Count >= 3)
 		{
             foreach(var item in Books)
 			{
-                Debug.Log("削除中");
+                if (item.gameObject.CompareTag("ボム"))
+                {
+                    _Add.BombAdd();
+                }
                 Destroy(item);
-			}
+            }
 
             _Add.ScoreAdd(Books.Count);
 		}
 		else
 		{
-            Debug.Log("削除しない");
             GameObject _child;
             foreach(var item in Books)
 			{
