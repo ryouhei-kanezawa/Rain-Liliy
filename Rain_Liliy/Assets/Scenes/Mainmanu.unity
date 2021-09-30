@@ -219,7 +219,7 @@ GameObject:
   - component: {fileID: 436583343}
   - component: {fileID: 436583342}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: baton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 641002521}
   - component: {fileID: 641002520}
   m_Layer: 5
-  m_Name: Pazle
+  m_Name: Pazzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -633,7 +633,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\xD7"
 --- !u!222 &652146773
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -740,7 +740,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a826a00c00794cf4c88227143f5578bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pazle: {fileID: 641002520}
+  btn1: {fileID: 641002520}
+  btn2: {fileID: 2128116961}
+  num: 1
+  num2: 2
 --- !u!114 &797544438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1081,7 +1084,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: "\xD7"
 --- !u!222 &1304060291
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1160,7 +1163,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: cook
 --- !u!222 &1472063727
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1318,7 +1321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pazle
+  m_Text: Pazzle
 --- !u!222 &1651310614
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1340,7 +1343,7 @@ GameObject:
   - component: {fileID: 1772902882}
   - component: {fileID: 1772902881}
   m_Layer: 5
-  m_Name: Button
+  m_Name: novel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1461,7 +1464,7 @@ GameObject:
   - component: {fileID: 2128116962}
   - component: {fileID: 2128116961}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: cook
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

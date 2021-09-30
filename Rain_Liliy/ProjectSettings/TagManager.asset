@@ -11,6 +11,20 @@ TagManager:
   - "\u9EC4\u30D4\u30FC\u30B9"
   - "\u30DC\u30E0"
   - Frame
+  - egg
+  - potato
+  - broccoli
+  - carrot
+  - tomato
+  - lettuce
+  - mushroom
+  - bacon
+  - meat
+  - parsley
+  - crouton
+  - cheese
+  - dressing
+  - sauce
   layers:
   - Default
   - TransparentFX

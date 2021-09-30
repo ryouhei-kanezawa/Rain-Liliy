@@ -17,8 +17,6 @@ public class LimitTime : MonoBehaviour
     private float rotateValue = 0;
     private Transform _transform;
     private float turn;
-    //private Vector3 pos;
-    //private bool coroutineBool = true;
 
     private void Awake()
     {

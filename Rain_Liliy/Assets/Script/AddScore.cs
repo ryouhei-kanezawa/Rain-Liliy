@@ -6,11 +6,17 @@ public class AddScore : MonoBehaviour
     [SerializeField]
     private Slider scoreSlider;
     [SerializeField]
+    private Slider Slider2;
+    [SerializeField]
     private float add = 300f;
     [SerializeField]
-    private float mag = 1.5f;
+    private float mag = 50f;
     [SerializeField]
-    private float Bscore = 5000;
+    private float Bscore = 100;
+
+
+    [SerializeField]
+    private Text viewScore;
 
     private float score = 0;
     private float maxScore;
@@ -18,6 +24,7 @@ public class AddScore : MonoBehaviour
     private void Update()
     {
         //Debug.Log(score);
+        viewScore.text = "score:" + score;
     }
 
     public void ScoreAdd(int count)
@@ -30,21 +37,33 @@ public class AddScore : MonoBehaviour
             fixed_mag += mag;
         }
 
-        scoreSlider.value += add * fixed_mag;
-        score =(int)(score + add * fixed_mag);
+        AddSlider(add + fixed_mag);
+        score =(int)(score + add + fixed_mag);
         maxScore = score;
     }
 
-    public void BombAdd()
+    public void BombAdd(int count)
     {
-        scoreSlider.value += Bscore;
-        score += Bscore;
+        AddSlider(Bscore * count);
+        score += Bscore * count;
         maxScore = score;
     }
 
     public int GetScore()
     {
         return (int)maxScore;
+    }
+
+    private void AddSlider(float _Score)
+    {
+        if (scoreSlider.value <= 10000)
+        {
+            scoreSlider.value += _Score;
+        }
+        else
+        {
+            Slider2.value += _Score;
+        }
     }
         
 }

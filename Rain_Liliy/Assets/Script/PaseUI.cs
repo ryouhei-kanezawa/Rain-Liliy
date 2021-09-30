@@ -1,34 +1,39 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PaseUI : MonoBehaviour
 {
     [SerializeField]
-    private Button Pause;
+    private Button Pause;               //ポーズ画面を呼び出すボタン
     [SerializeField]
-    private GameObject pauseObject;
+    private GameObject pauseObject;     //プレハブ化したポーズ画面
+    [SerializeField]
+    private GameObject canvas;          //InstantiateするCanvas
 
-    private bool sw = true;
+    private GameObject _pause;
+    private Transform canvasTran;
 
     void Awake()
     {
-        pauseObject.SetActive(false);
         Pause.onClick.AddListener(PauseSW);
     }
 
     void PauseSW()
     {
-        if (sw)
+        if (_pause == null)
         {
-            sw = false;
-            pauseObject.SetActive(true);
-            Time.timeScale = 0f;
+            _pause= Instantiate(pauseObject, canvasTran, false);
+            _pause.transform.SetParent(canvas.transform, false);
+
+            Time.timeScale = 0;
         }
         else
         {
-            sw = true;
-            pauseObject.SetActive(false);
-            Time.timeScale = 1f;
+            Destroy(_pause);
+
+            Time.timeScale = 1.0f;
         }
     }
 }
