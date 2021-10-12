@@ -9,7 +9,7 @@ public class Mainmaneger : MonoBehaviour
     [SerializeField]
     private Button btn1;
     [SerializeField]
-    private Button btn2;
+    private Button btn2 = null;
 
     [SerializeField]
     private int num = 1;
