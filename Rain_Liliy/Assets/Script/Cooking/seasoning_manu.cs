@@ -62,34 +62,32 @@ public class seasoning_manu : MonoBehaviour
 	[SerializeField]
 	private Button lemon_bm;
 
-
-	[Space(5)]
-	[SerializeField]
-	private GameObject canvas;
-
 	private GameObject knob;
+	[SerializeField]
 	private Transform canvasTran;
+	private Vector3 _position = new Vector3();
 
-	private void Awake()
+	private void Start()
 	{
+		oil_bm.onClick.AddListener(() => on_Canvas(oil));
+		sauce_bm.onClick.AddListener(() => on_Canvas(sauce));
 		/*
 		parsley_bm.onClick.AddListener(() => on_Canvas(parsley));
 		cheese_bm.onClick.AddListener(() => on_Canvas(cheese));
 		dressing_bm.onClick.AddListener(() => on_Canvas(dressing));
-		sauce_bm.onClick.AddListener(() => on_Canvas(sauce));
-		oil_bm.onClick.AddListener(() => on_Canvas(oil));
 		pepper_bm.onClick.AddListener(() => on_Canvas(pepper));
 		suger_bm.onClick.AddListener(() => on_Canvas(suger));
 		veryS_bm.onClick.AddListener(() => on_Canvas(very_sauce));
 		*/
+		_position = canvasTran.position;
+		_position.z -= 10.0f;
 	}
 
 	private void on_Canvas(GameObject equipment)
 	{
 		if (knob == null)
 		{
-			knob = Instantiate(equipment, canvasTran, false);
-			knob.transform.SetParent(canvas.transform, false);
+			knob = Instantiate(equipment, _position, Quaternion.identity);
 		}
 		else
 		{

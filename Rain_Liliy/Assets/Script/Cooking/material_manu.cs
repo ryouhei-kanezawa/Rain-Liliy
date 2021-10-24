@@ -90,14 +90,11 @@ public class material_manu : MonoBehaviour
 	[SerializeField]
 	private Button blueberry_bm;
 
-	[Space(5)]
-	[SerializeField]
-	private GameObject canvas;
-
 	private GameObject knob;
+	[SerializeField]
 	private Transform canvasTran;
 
-	private void Awake()
+	private void Start()
 	{
 
 	}
@@ -106,8 +103,7 @@ public class material_manu : MonoBehaviour
 	{
 		if (knob == null)
 		{
-			knob = Instantiate(equipment, canvasTran, false);
-			knob.transform.SetParent(canvas.transform, false);
+			knob = Instantiate(equipment, canvasTran.position, Quaternion.identity);
 		}
 		else
 		{

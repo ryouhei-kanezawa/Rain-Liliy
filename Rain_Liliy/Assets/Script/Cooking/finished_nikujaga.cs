@@ -15,6 +15,27 @@ public enum MaterialTag
 	bacon,
 	meat,
 	strawberry,
+	onion,
+	salmon,
+	beef,
+	raspberry,
+	waffle,
+	Sayaendo,
+	Red_onion,
+	ice,
+	blueberry,
+	parsley,
+	crouton,
+	cheese,
+	dressing,
+	sauce,
+	oil,
+	pepper,
+	suger,
+	very_sauce,
+	rosemary,
+	mint,
+	lemon,
 }
 
 public class finished_nikujaga : MonoBehaviour
@@ -29,25 +50,16 @@ public class finished_nikujaga : MonoBehaviour
 	MaterialTag[] m_tag;
 	[SerializeField]
 	private int[] order;
+	[SerializeField]
+	private Sprite[] sprites ;
 
-	private GameObject[] foodstuff;
-	private bool phase1 = false;
+	private List<GameObject> foodstuff = new List<GameObject>();
 	private int num=0;
+	private int stuffnum = 0;
 
 	void Awake()
 	{
 		m_Image.sprite = finished_image;
-		foreach(MaterialTag c_tag in m_tag)
-		{
-			Debug.Log(c_tag);
-			if("egg"==c_tag.ToString())
-			{
-				Debug.Log("true");
-			}else
-			{ 
-				Debug.Log("false");
-			}
-		}
 	}
 
 	void Update()
@@ -55,11 +67,36 @@ public class finished_nikujaga : MonoBehaviour
 
 	}
 
-	private void Finished_order()
+	void OnTriggerEnter2D(Collider2D col)
+    {
+		foodstuff.Add(col.gameObject);
+		num++;
+		Debug.Log(num);
+		Debug.Log(col);
+    }
+
+	public void Finished_order()
 	{
+		int temp = order[stuffnum];
 		foreach (GameObject _stuff in foodstuff) 
 		{
+			if(_stuff.gameObject.tag==m_tag[stuffnum].ToString()
+                && temp == order[stuffnum])
+            {
 
+            }else if(_stuff.gameObject.tag == m_tag[stuffnum].ToString()
+				&& temp != order[stuffnum])
+            {
+
+            }
+            else
+            {
+
+            }
+			temp = order[stuffnum];
+			stuffnum++;
 		}
+
+		foodstuff.Clear();
 	}
 }
