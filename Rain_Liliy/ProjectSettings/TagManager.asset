@@ -25,6 +25,7 @@ TagManager:
   - cheese
   - dressing
   - sauce
+  - oil
   layers:
   - Default
   - TransparentFX

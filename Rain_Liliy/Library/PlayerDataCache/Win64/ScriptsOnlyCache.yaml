@@ -23,7 +23,6 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.IK.Runtime.dll:
     - UnityEditor.U2D.IK.IKEditorManagerHelper
     Unity.2D.Tilemap.Editor.dll:
@@ -34,11 +33,13 @@ ScriptsOnlyBuild:
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
+    Unity.CollabProxy.Editor.dll:
+    - Unity.Cloud.Collaborate.UserInterface.CollaborateWindow
+    - Unity.Cloud.Collaborate.UserInterface.WindowCache
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.Timeline.Editor.dll:
     - TimelinePreferences
-    - TimelineProjectSettings
     - UnityEditor.Timeline.SequenceHierarchy
     - UnityEditor.Timeline.TimelineWindow
     Unity.Timeline.dll:
@@ -187,11 +188,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3966}
     - Class: 114
-      Script: {instanceID: 4146}
+      Script: {instanceID: 4126}
     - Class: 114
-      Script: {instanceID: 4670}
+      Script: {instanceID: 4148}
     - Class: 114
-      Script: {instanceID: 26238}
+      Script: {instanceID: 4672}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -290,11 +291,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3882}
     - Class: 114
-      Script: {instanceID: 4130}
+      Script: {instanceID: 4132}
     - Class: 114
-      Script: {instanceID: 4896}
+      Script: {instanceID: 4898}
     - Class: 114
-      Script: {instanceID: 4954}
+      Script: {instanceID: 4956}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -428,7 +429,7 @@ ScriptsOnlyBuild:
     className: QuitGameManeger
   - hash:
       serializedVersion: 2
-      Hash: 57da16b2aa32b4fbe0927c3ddba98e2c
+      Hash: 41d1d358bc60b1aee793813b0fe99de3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Mainmaneger
@@ -476,7 +477,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 79597b1817bbdc0796bee7f009217f6e
+      Hash: 14cd1ffe557ca6009308409371247e4d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: material_manu
@@ -494,7 +495,7 @@ ScriptsOnlyBuild:
     className: EnumerableTestState
   - hash:
       serializedVersion: 2
-      Hash: f20f2e7c05c372ddf85aae111a208e25
+      Hash: b494f3b82ed7b458ce58cdc278844e24
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: finished_nikujaga
@@ -836,6 +837,12 @@ ScriptsOnlyBuild:
     className: TMP_ColorGradient
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: move_object
+  - hash:
+      serializedVersion: 2
       Hash: 908b3077da284d11de0450423ca1808e
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -908,7 +915,7 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
-      Hash: c8b41c125c7af5561afb87d830c57790
+      Hash: d563d92ba6869e7176c5f37f58ea4507
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: seasoning_manu
@@ -942,12 +949,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.IK.Runtime.dll
     namespaceName: UnityEngine.U2D.IK
     className: FabrikSolver2D
-  - hash:
-      serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: move_object
   platform: 19
   scenePathNames:
   - Assets/Scenes/Mainmanu.unity

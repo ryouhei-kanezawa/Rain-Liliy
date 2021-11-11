@@ -51,15 +51,23 @@ public class finished_nikujaga : MonoBehaviour
 	[SerializeField]
 	private int[] order;
 	[SerializeField]
-	private Sprite[] sprites ;
+	private GameObject[] sprites ;
+	[SerializeField]
+	private Text debugText;
 
-	private List<GameObject> foodstuff = new List<GameObject>();
-	private int num=0;
+	private GameObject[] foodstuff = new GameObject[15];
+	private int num = 0;
 	private int stuffnum = 0;
+	private int stuck = 0;
+	[SerializeField]
+	private Transform canvasTran;
+	private Vector3 _position = new Vector3();
 
-	void Awake()
+	void Start()
 	{
 		m_Image.sprite = finished_image;
+		_position = canvasTran.position;
+		_position.z -= 10.0f;
 	}
 
 	void Update()
@@ -69,10 +77,43 @@ public class finished_nikujaga : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D col)
     {
-		foodstuff.Add(col.gameObject);
-		num++;
+		debugText.text = "";
+
+		D_Text();
+
 		Debug.Log(num);
-		Debug.Log(col);
+        if (foodstuff[0]!=null)
+        {
+			Debug.Log("NotNull");
+			stuck = 0;
+			foreach (var item in foodstuff)
+			{
+				Debug.Log("stuck:" + stuck);
+				if (item==null)
+				{
+					break;
+				}
+				else if (col.gameObject.tag == foodstuff[stuck].tag)
+				{
+					Debug.Log("Through");
+					return;
+				}
+				stuck++;
+			}
+        }
+
+        for (int i = 0; i < sprites.Length; i++)
+        {
+            if (col.gameObject.tag == sprites[i].tag)
+            {
+				Instantiate(sprites[i], _position, Quaternion.identity);
+				foodstuff[num] = sprites[i];
+				Debug.Log(foodstuff[num] + ":" + num);
+				break;
+            }
+		}
+
+		num++;
     }
 
 	public void Finished_order()
@@ -80,13 +121,19 @@ public class finished_nikujaga : MonoBehaviour
 		int temp = order[stuffnum];
 		foreach (GameObject _stuff in foodstuff) 
 		{
-			if(_stuff.gameObject.tag==m_tag[stuffnum].ToString()
+			if(_stuff.tag==m_tag[stuffnum].ToString()
                 && temp == order[stuffnum])
             {
 
-            }else if(_stuff.gameObject.tag == m_tag[stuffnum].ToString()
+            }
+			else if (_stuff.tag == m_tag[stuffnum].ToString()
 				&& temp != order[stuffnum])
             {
+
+            }
+            else if (_stuff.tag != m_tag[stuffnum].ToString()
+				&& temp == order[stuffnum])
+			{
 
             }
             else
@@ -97,6 +144,14 @@ public class finished_nikujaga : MonoBehaviour
 			stuffnum++;
 		}
 
-		foodstuff.Clear();
+		foodstuff = new GameObject[] { };
+	}
+
+	private void D_Text()
+    {
+		for (int i = 0; i < foodstuff.Length; i++)
+		{
+			debugText.text += i + ":" + foodstuff[i] + "\n";
+		}
 	}
 }

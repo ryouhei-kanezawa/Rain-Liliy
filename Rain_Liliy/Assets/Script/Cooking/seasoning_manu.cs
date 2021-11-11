@@ -80,7 +80,7 @@ public class seasoning_manu : MonoBehaviour
 		veryS_bm.onClick.AddListener(() => on_Canvas(very_sauce));
 		*/
 		_position = canvasTran.position;
-		_position.z -= 10.0f;
+		_position.z -= 30.0f;
 	}
 
 	private void on_Canvas(GameObject equipment)
